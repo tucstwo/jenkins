@@ -82,7 +82,7 @@ then
 fi
 
 git config --global user.name $(whoami)@$NODE_NAME
-git config --global user.email jenkins@cyanogenmod.com
+git config --global user.email galaxy@thebronasium.com
 
 if [[ "$REPO_BRANCH" =~ "jellybean" || $REPO_BRANCH =~ "cm-10" ]]; then 
    JENKINS_BUILD_DIR=jellybean
@@ -131,12 +131,6 @@ fi
 mkdir -p .repo/local_manifests
 rm -f .repo/local_manifest.xml
 
-rm -rf $WORKSPACE/build_env
-git clone https://github.com/CyanogenMod/cm_build_config.git $WORKSPACE/build_env
-check_result "Bootstrap failed"
-
-cp $WORKSPACE/build_env/$REPO_BRANCH.xml .repo/local_manifests/dyn-$REPO_BRANCH.xml
-
 echo Core Manifest:
 cat .repo/manifest.xml
 
@@ -149,11 +143,11 @@ repo sync -d -c > /dev/null
 check_result "repo sync failed."
 echo Sync complete.
 
-if [ -f $WORKSPACE/hudson/$REPO_BRANCH-setup.sh ]
+if [ -f $WORKSPACE/jenkins/$REPO_BRANCH-setup.sh ]
 then
-  $WORKSPACE/hudson/$REPO_BRANCH-setup.sh
+  $WORKSPACE/jenkins/$REPO_BRANCH-setup.sh
 else
-  $WORKSPACE/hudson/cm-setup.sh
+  $WORKSPACE/jenkins/cm-setup.sh
 fi
 
 if [ -f .last_branch ]
@@ -174,7 +168,7 @@ fi
 # Workaround for failing translation checks in common hardware repositories
 if [ ! -z "$GERRIT_XLATION_LINT" ]
 then
-    LUNCH=$(echo $LUNCH@$DEVICEVENDOR | sed -f $WORKSPACE/hudson/shared-repo.map)
+    LUNCH=$(echo $LUNCH@$DEVICEVENDOR | sed -f $WORKSPACE/jenkins/shared-repo.map)
 fi
 
 lunch $LUNCH
@@ -233,15 +227,15 @@ then
   IS_HTTP=$(echo $GERRIT_CHANGES | grep http)
   if [ -z "$IS_HTTP" ]
   then
-    python $WORKSPACE/hudson/repopick.py $GERRIT_CHANGES
+    python $WORKSPACE/jenkins/repopick.py $GERRIT_CHANGES
     check_result "gerrit picks failed."
   else
-    python $WORKSPACE/hudson/repopick.py $(curl $GERRIT_CHANGES)
+    python $WORKSPACE/jenkins/repopick.py $(curl $GERRIT_CHANGES)
     check_result "gerrit picks failed."
   fi
   if [ ! -z "$GERRIT_XLATION_LINT" ]
   then
-    python $WORKSPACE/hudson/xlationlint.py $GERRIT_CHANGES
+    python $WORKSPACE/jenkins/xlationlint.py $GERRIT_CHANGES
     check_result "basic XML lint failed."
   fi
 fi
@@ -252,7 +246,7 @@ then
 fi
 
 rm -f $WORKSPACE/changecount
-WORKSPACE=$WORKSPACE LUNCH=$LUNCH bash $WORKSPACE/hudson/changes/buildlog.sh 2>&1
+WORKSPACE=$WORKSPACE LUNCH=$LUNCH bash $WORKSPACE/jenkins/changes/buildlog.sh 2>&1
 if [ -f $WORKSPACE/changecount ]
 then
   CHANGE_COUNT=$(cat $WORKSPACE/changecount)
