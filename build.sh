@@ -84,14 +84,8 @@ fi
 git config --global user.name $(whoami)@$NODE_NAME
 git config --global user.email galaxy@thebronasium.com
 
-if [[ "$REPO_BRANCH" =~ "jellybean" || $REPO_BRANCH =~ "cm-10" ]]; then 
-   JENKINS_BUILD_DIR=jellybean
-else
-   JENKINS_BUILD_DIR=$REPO_BRANCH
-fi
-
-mkdir -p $JENKINS_BUILD_DIR
-cd $JENKINS_BUILD_DIR
+mkdir -p $REPO_BRANCH
+cd $REPO_BRANCH
 
 # always force a fresh repo init since we can build off different branches
 # and the "default" upstream branch can get stuck on whatever was init first.
