@@ -11,10 +11,10 @@ export WORKSPACE=$PWD
 
 if [ ! -d hudson ]
 then
-  git clone git://github.com/CyanogenMod/hudson.git
+  git clone git://github.com/Dazzozo/jenkins.git
 fi
 
-cd hudson
+cd jenkins
 ## Get rid of possible local changes
 git reset --hard
 git pull -s resolve
