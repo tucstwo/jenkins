@@ -131,6 +131,11 @@ fi
 mkdir -p .repo/local_manifests
 rm -f .repo/local_manifest.xml
 
+if [ ! -z "$LOCAL_MANIFEST" ]
+then
+  echo $LOCAL_MANIFEST > .repo/local_manifests/$LUNCH.xml
+fi
+
 echo Core Manifest:
 cat .repo/manifest.xml
 
