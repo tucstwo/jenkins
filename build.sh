@@ -174,18 +174,7 @@ lunch $LUNCH
 check_result "lunch failed."
 
 # save manifest used for build (saving revisions as current HEAD)
-
-# include only the auto-generated locals
-TEMPSTASH=$(mktemp -d)
-mv .repo/local_manifests/* $TEMPSTASH
-mv $TEMPSTASH/roomservice.xml .repo/local_manifests/
-
-# save it
 repo manifest -o $WORKSPACE/archive/manifest.xml -r
-
-# restore all local manifests
-mv $TEMPSTASH/* .repo/local_manifests/ 2>/dev/null
-rmdir $TEMPSTASH
 
 rm -f $OUT/cm-*.zip*
 
