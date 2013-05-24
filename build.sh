@@ -170,11 +170,17 @@ then
     LUNCH=$(echo $LUNCH@$DEVICEVENDOR | sed -f $WORKSPACE/jenkins/shared-repo.map)
 fi
 
+# lunch for the first time, to grab roomservice stuff if any
 lunch $LUNCH
 check_result "lunch failed."
 
 # save manifest used for build (saving revisions as current HEAD)
 repo manifest -o $WORKSPACE/archive/manifest.xml -r
+
+# clear patches so changelogs don't show them every time
+echo Syncing to clear patches...
+repo sync -d -c > /dev/null
+echo Sync complete.
 
 rm -f $OUT/cm-*.zip*
 
@@ -246,6 +252,10 @@ then
   fi
 fi
 
+# lunch again to add any patches now that the change log has been generated
+lunch $LUNCH
+check_result "lunch failed."
+
 LAST_CLEAN=0
 if [ -f .clean ]
 then
@@ -301,6 +311,7 @@ rmdir $TEMPSTASH
 # chmod the files in case UMASK blocks permissions
 chmod -R ugo+r $WORKSPACE/archive
 
+# clear patches one last time to leave tree as it was on entry
 echo Syncing to clear patches...
 repo sync -d -c > /dev/null
 echo Sync complete.
