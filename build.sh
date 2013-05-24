@@ -300,3 +300,7 @@ rmdir $TEMPSTASH
 
 # chmod the files in case UMASK blocks permissions
 chmod -R ugo+r $WORKSPACE/archive
+
+echo Syncing to clear patches...
+repo sync -d -c > /dev/null
+echo Sync complete.
