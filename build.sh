@@ -177,7 +177,7 @@ check_result "lunch failed."
 # save manifest used for build (saving revisions as current HEAD)
 repo manifest -o $WORKSPACE/archive/manifest.xml -r
 
-# clear patches so changelogs don't show them every time
+# clear patches so change logs don't show them every time
 echo Syncing to clear patches...
 repo sync -d -c > /dev/null
 echo Sync complete.
@@ -253,6 +253,7 @@ then
 fi
 
 # lunch again to add any patches now that the change log has been generated
+. build/envsetup.sh
 lunch $LUNCH
 check_result "lunch failed."
 
@@ -311,7 +312,6 @@ rmdir $TEMPSTASH
 # chmod the files in case UMASK blocks permissions
 chmod -R ugo+r $WORKSPACE/archive
 
-# clear patches one last time to leave tree as it was on entry
 echo Syncing to clear patches...
 repo sync -d -c > /dev/null
 echo Sync complete.
