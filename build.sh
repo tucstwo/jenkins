@@ -240,17 +240,17 @@ then
 fi
 
 rm -f $WORKSPACE/changecount
-#WORKSPACE=$WORKSPACE LUNCH=$LUNCH bash $WORKSPACE/jenkins/changes/buildlog.sh 2>&1
-#if [ -f $WORKSPACE/changecount ]
-#then
+WORKSPACE=$WORKSPACE LUNCH=$LUNCH bash $WORKSPACE/jenkins/changes/buildlog.sh 2>&1
+if [ -f $WORKSPACE/changecount ]
+then
 #  CHANGE_COUNT=$(cat $WORKSPACE/changecount)
-#  rm -f $WORKSPACE/changecount
+  rm -f $WORKSPACE/changecount
 #  if [ $CHANGE_COUNT -eq "0" ]
 #  then
 #    echo "Zero changes since last build, aborting"
 #    exit 0
 #  fi
-#fi
+fi
 
 # lunch again to add any patches now that the change log has been generated
 . build/envsetup.sh
