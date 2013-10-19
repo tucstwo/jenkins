@@ -3,6 +3,8 @@
 # Absence of a period indicates Daily (the default)
 
 cm_u8815-userdebug cm-10.2
+cm_u8833-userdebug cm-10.2
+cm_u8951-userdebug cm-10.2
 cm_u8815-userdebug ics M
 cm_u8815-userdebug jellybean M
 cm_u8815-userdebug cm-10.1 W
