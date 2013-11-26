@@ -18,5 +18,5 @@ cd jenkins
 ## Get rid of possible local changes
 git reset --hard
 git pull -s resolve
-
+sudo chmod 777 build.sh
 exec ./build.sh
