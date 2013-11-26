@@ -17,4 +17,4 @@ git reset --hard
 git pull -s resolve
 sudo chmod 777 build.sh
 cd
-exec ./jenkins/build.sh
+ ./jenkins/build.sh
