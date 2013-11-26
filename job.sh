@@ -10,8 +10,6 @@ cd ../android
 export WORKSPACE=$PWD
 
 
-git clone git://github.com/fusion2/jenkins.git
-
 
 cd jenkins
 ## Get rid of possible local changes
