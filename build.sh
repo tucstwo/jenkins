@@ -82,7 +82,7 @@ then
 fi
 
 git config --global user.name $(whoami)@$NODE_NAME
-git config --global user.email galaxy@thebronasium.com
+git config --global user.email rickle581@gmail.com
 
 mkdir -p $REPO_BRANCH
 cd $REPO_BRANCH
