@@ -20,4 +20,4 @@ git reset --hard
 git pull -s resolve
 
 
-./build.sh
+. /build.sh
