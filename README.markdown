@@ -5,6 +5,6 @@ http://jenkins.thebronasium.com/
 The job uses the following script:
 
 ```bash
-curl -O https://raw.github.com/fusion2/jenkins/cm-11.0/job.sh
+curl -O https://raw.github.com/fusion2/jenkins/master/job.sh
 . ./job.sh
 ```
