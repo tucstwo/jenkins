@@ -1,6 +1,5 @@
 #!/usr/bin/env bash
-cd $WORKSPACE
-cd ../android
+
 function check_result {
   if [ "0" -ne "$?" ]
   then
