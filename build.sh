@@ -1,5 +1,6 @@
 #!/usr/bin/env bash
-
+cd $WORKSPACE
+cd ../a
 function check_result {
   if [ "0" -ne "$?" ]
   then
