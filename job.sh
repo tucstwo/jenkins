@@ -11,7 +11,7 @@ export WORKSPACE=$PWD
 
 if [ ! -d jenkins ]
 then
-  git clone git://github.com/Dazzozo/jenkins.git
+  git clone git://github.com/fusion2/jenkins.git
 fi
 
 cd jenkins
