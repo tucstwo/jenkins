@@ -1,5 +1,5 @@
 # Accessing the Build Server
-http://jenkins.thebronasium.com/
+http://fusion2.org:8080/
 
 # Jenkins Job Setup
 The job uses the following script:
