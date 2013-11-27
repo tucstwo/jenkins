@@ -1,6 +1,56 @@
 #!/usr/bin/env bash
 
+function check_result {
+  if [ "0" -ne "$?" ]
+  then
+    (repo forall -c "git reset --hard") >/dev/null
+    rm -f .repo/local_manifests/dyn-*.xml
+    rm -f .repo/local_manifests/roomservice.xml
+    echo $1
+    exit 1
+  fi
+}
 
+if [ -z "$HOME" ]
+then
+  echo HOME not in environment, guessing...
+  export HOME=$(awk -F: -v v="$USER" '{if ($1==v) print $6}' /etc/passwd)
+fi
+
+if [ -z "$WORKSPACE" ]
+then
+  echo WORKSPACE not specified
+  exit 1
+fi
+
+if [ -z "$CLEAN" ]
+then
+  echo CLEAN not specified
+  exit 1
+fi
+
+if [ -z "$REPO_BRANCH" ]
+then
+  echo REPO_BRANCH not specified
+  exit 1
+fi
+
+if [ -z "$LUNCH" ]
+then
+  echo LUNCH not specified
+  exit 1
+fi
+
+if [ -z "$RELEASE_TYPE" ]
+then
+  echo RELEASE_TYPE not specified
+  exit 1
+fi
+
+if [ -z "$SYNC_PROTO" ]
+then
+  SYNC_PROTO=http
+fi
 
 # colorization fix in Jenkins
 export CL_RED="\"\033[31m\""
