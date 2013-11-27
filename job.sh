@@ -19,3 +19,4 @@ cd jenkins
 git reset --hard
 git pull -s resolve
 
+exec ./build.sh
