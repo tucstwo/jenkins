@@ -54,7 +54,7 @@ headers['User-Agent'] = 'CyanogenMod changelog builder'
 headers['Accept'] = '*/*'
 headers['Content-Length'] = "%d" % (len(logrequest))
 
-conn = http.client.HTTPConnection('getcm.thebronasium.com', 80)
+conn = http.client.HTTPConnection('getcm.fusion2.org
 conn.connect()
 request = conn.putrequest('POST', '/api')
 
