@@ -82,7 +82,7 @@ then
 fi
 
 git config --global user.name $(whoami)@$NODE_NAME
-git config --global user.email rickle581@gmail.com
+git config --global user.email tucstwo@gmail.com
 
 mkdir -p $REPO_BRANCH
 cd $REPO_BRANCH
@@ -104,7 +104,7 @@ fi
 
 rm -rf .repo/manifests*
 rm -f .repo/local_manifests/dyn-*.xml
-repo init -u $SYNC_PROTO://github.com/soupy031/LiquidSmooth.git -b $CORE_BRANCH $MANIFEST
+repo init -u $SYNC_PROTO://github.com/PAC-man/pacman/default.git -b $CORE_BRANCH $MANIFEST
 check_result "repo init failed."
 
 # make sure ccache is in PATH
